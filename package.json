@@ -1,0 +1,21 @@
+{
+  "name": "npm-try",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tuprolog/2p-core": "^0.7.2",
+    "@tuprolog/2p-parser-theory": "^0.7.2",
+    "@tuprolog/2p-solve-classic": "^0.7.2",
+    "@tuprolog/2p-theory": "^0.7.2"
+  },
+  "devDependencies": {
+    "tinyify": "^2.5.2",
+    "browserify": "^16.5.1"
+  }
+}
