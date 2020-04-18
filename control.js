@@ -1,32 +1,43 @@
-const ClassicSolverFactory = tuprolog.classic.ClassicSolverFactory;
+(function() {
+  const ClassicSolverFactory = tuprolog.classic.ClassicSolverFactory;
+  const theoryField = document.querySelector("#theory");
+  const queryField = document.querySelector("#query");
+  const solutionsList = document.querySelector("#solutions");
 
-function solverOf(staticKb) {
+  function startup() {
+    setListeners();
+  }
+
+  function solverOf(staticKb) {
     return ClassicSolverFactory.solverWithDefaultBuiltins(
-        ClassicSolverFactory.defaultLibraries,
-        ClassicSolverFactory.defaultFlags,
-        staticKb
+      ClassicSolverFactory.defaultLibraries,
+      ClassicSolverFactory.defaultFlags,
+      staticKb
     );
-}
+  }
 
-function solve() {
-    const theoryField = $("#theory");
-    const queryField = $("#query");
-    const solutionsList = $("#solutions");
+  const setListeners = () => {
+    const buttons = document.querySelectorAll("button.solve");
+    buttons.forEach(e => e.addEventListener("click", solve));
+  };
 
-    if (/^\s*$/.test(queryField.val())) {
-        alert("Missing query!");
-        return;
+  function solve() {
+    if (/^\s*$/.test(queryField.value)) {
+      alert("Missing query!");
+      return;
     }
 
-    const query = tuprolog.core.parsing.parseStringAsStruct(queryField.val());
-    const theory = tuprolog.theory.parsing.parseAsClauseDatabase(theoryField.text());
+    const query = tuprolog.core.parsing.parseStringAsStruct(queryField.value);
+    const theory = tuprolog.theory.parsing.parseAsClauseDatabase(theoryField.value);
     const solver = solverOf(theory);
 
     const solutions = solver.solve(query);
     const i = solutions.iterator();
 
     while (i.hasNext()) {
-        const sol = i.next();
-        alert(sol.toString());
+      const sol = i.next();
+      alert(sol.toString());
     }
-}
+  }
+  startup();
+})();

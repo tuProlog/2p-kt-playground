@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Web 2P-Kt</title>
     <style>
-    body {
-        background-color: black;
-        text-align: center;
-        color: white;
-    }
+        body {
+            background-color: black;
+            text-align: center;
+            color: white;
+        }
     </style>
-    </head>
-    <script type="text/javascript" src="bundle.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-            crossorigin="anonymous"></script>
-    <script type="text/javascript" src="control.js"></script>
+</head>
+<script type="text/javascript" src="bundle.js"></script>
+
 <body>
 
-<h1>2P-Kt</h1>
+    <h1>2P-Kt</h1>
 
-<textarea id="theory" rows="20" cols="80">
+    <textarea id="theory" rows="20" cols="80">
 mother_child(trude, sally).
 
 father_child(tom, sally).
@@ -32,16 +30,17 @@ parent_child(X, Y) :- father_child(X, Y).
 parent_child(X, Y) :- mother_child(X, Y).
 </textarea>
 
-<p>
-<label for="query">?-</label>
-<input type="text" id="query" name="query">
-<input type="submit" value="Submit" onclick="solve()">
-</p>
+    <p>
+        <label for="query">?-</label>
+        <input type="text" id="query" name="query">
+        <button class="solve">Esegui Query</button>
+    </p>
 
-<ol id=solutions>
+    <ol id=solutions>
 
-</ol>
+    </ol>
 
-
+    <script type="text/javascript" src="control.js"></script>
 </body>
+
 </html>
