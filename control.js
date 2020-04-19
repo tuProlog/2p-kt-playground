@@ -19,6 +19,12 @@
   const setListeners = () => {
     const buttons = document.querySelectorAll("button.solve");
     buttons.forEach(e => e.addEventListener("click", solve));
+    const clearSolutionButton = document.querySelector("button.clearSolutions");
+    if (clearSolutionButton)
+      clearSolutionButton.addEventListener(
+        "click",
+        () => (solutionsList.innerHTML = "")
+      );
   };
 
   function solve() {
