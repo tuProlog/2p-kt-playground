@@ -16,7 +16,7 @@
     );
   }
 
-  const setListeners = () => {
+  function setListeners() {
     const buttons = document.querySelectorAll("button.solve");
     buttons.forEach(e => e.addEventListener("click", solve));
     const clearSolutionButton = document.querySelector("button.clearSolutions");
@@ -25,6 +25,20 @@
         "click",
         () => (solutionsList.innerHTML = "")
       );
+      document
+      .querySelector("#inputFile")
+      .addEventListener("change", e =>
+        readFile(e.target.files[0], text => (theoryField.innerText = text))
+      );
+  };
+
+  function readFile(file, cb){
+    var reader = new FileReader();
+    reader.onload = (function(reader) {
+      return () => cb(reader.result);
+    })(reader);
+
+    reader.readAsText(file);
   };
 
   function solve() {

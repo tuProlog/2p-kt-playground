@@ -23,18 +23,22 @@
             parent_child(X, Y) :- father_child(X, Y).
             parent_child(X, Y) :- mother_child(X, Y).
             </textarea>
+            <input type="file" id="inputFile">
     </div>
     <div class="column result">
             <label for="query">Inserisci la Query : ?-</label>
-            <textarea type="text" id="query" name="query" rows="4">
+            <textarea type="text" id="query" name="query" rows="10">
                 sibling(sally,Y)
             </textarea>
             <button class="solve" >Next</button>
-            <button class="clearSolutions">Clear</button>
-            <ol id="solutions">
-
-            </ol>
     </div>
+</div>
+<p>Solutions</p>
+<button class="clearSolutions">Clear</button>
+<div class="row output">
+
+    <ol id=solutions>
+    </ol>
 </div>
 <script type="text/javascript" src="control.js"></script>
 </body>
