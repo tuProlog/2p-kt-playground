@@ -57,28 +57,34 @@
 
   function SolutionResult(iterable, parentHtml, query) {
 
-    const solutionList = document.createElement("ul");
-    const solutionQuery = document.createElement("span");
-    const nextButton = document.createElement("button")
-    nextButton.innerText = "Next"
-    nextButton.addEventListener('click', printNext)
-    solutionQuery.innerText = query
-    const solutionContainer = document.createElement("div");
-    solutionContainer.appendChild(solutionQuery)
-    solutionContainer.appendChild(nextButton)
-    solutionContainer.appendChild(solutionList)
-    parentHtml.appendChild(solutionContainer)
+    function prepareDom(){
+      const list = document.createElement("ul");
+      const solutionQuery = document.createElement("span");
+      const nextButton = document.createElement("button")
+      nextButton.innerText = "Next"
+      nextButton.addEventListener('click', ()=>printNext(list))
+      solutionQuery.innerText = query
+      const solutionContainer = document.createElement("div");
+      solutionContainer.className = "solutionResultWrapper"
+      solutionContainer.appendChild(solutionQuery)
+      solutionContainer.appendChild(nextButton)
+      solutionContainer.appendChild(list)
+      parentHtml.appendChild(solutionContainer)
+      return list;
+    }
 
-    function addDomSolution(sol) {
+
+    function addDomSolution(sol, solutionList) {
       let element = document.createElement("li");
       element.innerText = sol;
       solutionList.appendChild(element);
     }
 
-    function printNext() {
-      if (iterable.hasNext()) addDomSolution(iterable.next());
+    function printNext(list) {
+      if (iterable.hasNext()) addDomSolution(iterable.next(), list);
     }
-    printNext();
+
+    printNext(prepareDom());
   }
 
   startup();
