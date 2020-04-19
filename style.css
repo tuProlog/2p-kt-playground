@@ -1,0 +1,29 @@
+body{
+    width: 90%;
+    margin: 0 auto;
+}
+.row{
+    min-height: 60vh;
+    max-height: 80vh;
+    display:flex
+}
+
+.column {
+    flex: 1 1 0;
+    text-align: center;
+}
+
+.column.result{
+    display: flex;
+    flex-direction: column;
+}
+#theory{
+   height: 90%;
+}
+
+#theory, #query {
+    width : 98%;
+    resize: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+}

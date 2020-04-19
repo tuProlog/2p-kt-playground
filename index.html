@@ -1,46 +1,37 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Web 2P-Kt</title>
-    <style>
-        body {
-            background-color: black;
-            text-align: center;
-            color: white;
-        }
-    </style>
-</head>
-<script type="text/javascript" src="bundle.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="style.css" id="css">
+    </head>
+    <script type="text/javascript" src="bundle.js"></script>    
 <body>
 
-    <h1>2P-Kt</h1>
+<h1>2P-Kt</h1>
 
-    <textarea id="theory" rows="20" cols="80">
-mother_child(trude, sally).
-
-father_child(tom, sally).
-father_child(tom, erica).
-father_child(mike, tom).
-    
-sibling(X, Y)      :- parent_child(Z, X), parent_child(Z, Y).
-    
-parent_child(X, Y) :- father_child(X, Y).
-parent_child(X, Y) :- mother_child(X, Y).
-</textarea>
-
-    <p>
-        <label for="query">?-</label>
-        <input type="text" id="query" name="query">
-        <button class="solve">Esegui Query</button>
-    </p>
-
-    <ol id=solutions>
-
-    </ol>
-
-    <script type="text/javascript" src="control.js"></script>
+<div class="row input">
+    <div class="column">
+        <textarea id="theory" rows="20" cols="80">
+            mother_child(trude, sally).
+            
+            father_child(tom, sally).
+            father_child(tom, erica).
+            father_child(mike, tom).
+                
+            sibling(X, Y)      :- parent_child(Z, X), parent_child(Z, Y).
+                
+            parent_child(X, Y) :- father_child(X, Y).
+            parent_child(X, Y) :- mother_child(X, Y).
+            </textarea>
+    </div>
+    <div class="column result">
+            <label for="query">Inserisci la Query : ?-</label>
+            <textarea type="text" id="query" name="query" rows="4">
+                sibling(sally,Y)
+            </textarea>
+            <button class="solve" >Next</button>
+    </div>
+</div>
+<script type="text/javascript" src="control.js"></script>
 </body>
-
 </html>
