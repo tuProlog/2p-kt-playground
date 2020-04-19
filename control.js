@@ -36,7 +36,9 @@
 
     while (i.hasNext()) {
       const sol = i.next();
-      alert(sol.toString());
+      let element = document.createElement("li");
+      element.innerText = sol;
+      solutionsList.appendChild(element);
     }
   }
   startup();
