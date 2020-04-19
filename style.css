@@ -27,3 +27,7 @@ body{
     border-radius: 10px;
     box-sizing: border-box;
 }
+
+#solutions li:nth-child(odd){
+    background-color: #EEE;
+}

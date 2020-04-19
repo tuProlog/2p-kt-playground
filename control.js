@@ -50,16 +50,36 @@
     const query = tuprolog.core.parsing.parseStringAsStruct(queryField.value);
     const theory = tuprolog.theory.parsing.parseAsClauseDatabase(theoryField.value);
     const solver = solverOf(theory);
-
     const solutions = solver.solve(query);
     const i = solutions.iterator();
+    SolutionResult(i,solutionsList,query)
+  }
 
-    while (i.hasNext()) {
-      const sol = i.next();
+  function SolutionResult(iterable, parentHtml, query) {
+
+    const solutionList = document.createElement("ul");
+    const solutionQuery = document.createElement("span");
+    const nextButton = document.createElement("button")
+    nextButton.innerText = "Next"
+    nextButton.addEventListener('click', printNext)
+    solutionQuery.innerText = query
+    const solutionContainer = document.createElement("div");
+    solutionContainer.appendChild(solutionQuery)
+    solutionContainer.appendChild(nextButton)
+    solutionContainer.appendChild(solutionList)
+    parentHtml.appendChild(solutionContainer)
+
+    function addDomSolution(sol) {
       let element = document.createElement("li");
       element.innerText = sol;
-      solutionsList.appendChild(element);
+      solutionList.appendChild(element);
     }
+
+    function printNext() {
+      if (iterable.hasNext()) addDomSolution(iterable.next());
+    }
+    printNext();
   }
+
   startup();
 })();
