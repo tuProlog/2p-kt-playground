@@ -29,7 +29,12 @@
       return () => cb(reader.result);
     })(reader);
 
-    reader.readAsText(file);
+    if(file.type === 'text/plain'){
+      reader.readAsText(file);
+    }else{
+      alert("formato file non ammesso")
+    }
+      
   };
 
   startup();
