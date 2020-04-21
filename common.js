@@ -16,10 +16,9 @@ const tuprolog = {
     "classic": classic
 };
 
-window.kotlin = kotlin;
-window.ktmath = ktmath;
-window.tuprolog = tuprolog;
-window["2p"] = tuprolog;
-window.println = function (x) {
-    console.log(x.toString());
-};
+const common = {
+    kotlin,
+    ktmath
+}
+
+module.exports = { tuprolog, common}

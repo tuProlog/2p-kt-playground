@@ -1,5 +1,8 @@
 (function() {
-  const ClassicSolverFactory = tuprolog.classic.ClassicSolverFactory;
+
+   const common = require('./common.js')
+
+  const ClassicSolverFactory = common.tuprolog.classic.ClassicSolverFactory;
   const theoryField = document.querySelector("#theory");
   const queryField = document.querySelector("#query");
   const solutionsList = document.querySelector("#solutions");
@@ -47,8 +50,8 @@
       return;
     }
 
-    const query = tuprolog.core.parsing.parseStringAsStruct(queryField.value);
-    const theory = tuprolog.theory.parsing.parseAsClauseDatabase(theoryField.value);
+    const query = common.tuprolog.core.parsing.parseStringAsStruct(queryField.value);
+    const theory = common.tuprolog.theory.parsing.parseAsClauseDatabase(theoryField.value);
     const solver = solverOf(theory);
     const solutions = solver.solve(query);
     const i = solutions.iterator();

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build" : "browserify index.js -o bundle.js"
+    "build" : "browserify control.js -o bundle.js"
   },
   "author": "",
   "license": "ISC",
