@@ -8,7 +8,6 @@
 
   function startup() {
     setListeners();
-    queryModule(theoryField, queryField, solveCallback)
   }
 
   function solveCallback(iterator, query) {
@@ -21,6 +20,9 @@
       .addEventListener("change", e =>
         readFile(e.target.files[0], text => (theoryField.innerText = text))
       );
+
+      const solveQuery = document.querySelector("button.solve");
+    solveQuery.addEventListener("click", () => queryModule.solve(theoryField.value, queryField.value, solveCallback));
   };
 
   function readFile(file, cb) {

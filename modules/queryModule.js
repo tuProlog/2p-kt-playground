@@ -1,5 +1,5 @@
 
-function queryModule(theoryField, queryField, solveCallback) {
+function queryModule() {
 
     const common = require('../common.js')
 
@@ -13,26 +13,22 @@ function queryModule(theoryField, queryField, solveCallback) {
         );
     }
 
-    function solve() {
-        if (/^\s*$/.test(queryField.value)) {
+    function solve(theoryText, queryText, solveCallback) {
+        if (/^\s*$/.test(queryText)) {
             alert("Missing query!");
             return;
         }
 
-        const query = common.tuprolog.core.parsing.parseStringAsStruct(queryField.value);
-        const theory = common.tuprolog.theory.parsing.parseAsClauseDatabase(theoryField.value);
+        const query = common.tuprolog.core.parsing.parseStringAsStruct(queryText);
+        const theory = common.tuprolog.theory.parsing.parseAsClauseDatabase(theoryText);
         const solver = solverOf(theory);
         const solutions = solver.solve(query);
         const i = solutions.iterator();
-        solveCallback(i, query)
+        solveCallback(i, query);
+        
     }
 
-    function setListeners() {
-        const solveQuery = document.querySelector("button.solve");
-        solveQuery.addEventListener("click", () => solve());
-    };
-
-    setListeners();
+    return {solve}
 }
 
-module.exports = queryModule
+module.exports = queryModule()
