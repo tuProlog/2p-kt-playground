@@ -1,5 +1,5 @@
 
-function queryModule() {
+function queryService() {
 
     const common = require('../common.js')
 
@@ -13,7 +13,7 @@ function queryModule() {
         );
     }
 
-    function solve(theoryText, queryText, solveCallback) {
+    function solve(theoryText, queryText) {
         if (/^\s*$/.test(queryText)) {
             alert("Missing query!");
             return;
@@ -24,11 +24,11 @@ function queryModule() {
         const solver = solverOf(theory);
         const solutions = solver.solve(query);
         const i = solutions.iterator();
-        solveCallback(i, query);
+        return{i, query};
         
     }
 
     return {solve}
 }
 
-module.exports = queryModule()
+module.exports = queryService()

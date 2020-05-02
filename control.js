@@ -1,5 +1,5 @@
 (function () {
-  const queryModule = require('./modules/queryModule')
+  const queryService = require('./service/queryService')
   const solutionResultModule = require('./modules/solutionResultModule')
 
   const theoryField = document.querySelector("#theory");
@@ -10,10 +10,6 @@
     setListeners();
   }
 
-  function solveCallback(iterator, query) {
-    solutionResultModule(iterator, solutionsList, query)
-  }
-
   function setListeners() {
     document
       .querySelector("#inputFile")
@@ -21,8 +17,11 @@
         readFile(e.target.files[0], text => (theoryField.innerText = text))
       );
 
-      const solveQuery = document.querySelector("button.solve");
-    solveQuery.addEventListener("click", () => queryModule.solve(theoryField.value, queryField.value, solveCallback));
+    const solveQuery = document.querySelector("button.solve");
+    solveQuery.addEventListener("click", () => {
+      const { i, query } = queryService.solve(theoryField.value, queryField.value)
+      solutionResultModule(i, solutionsList, query)
+    });
   };
 
   function readFile(file, cb) {
@@ -31,12 +30,12 @@
       return () => cb(reader.result);
     })(reader);
 
-    if(file.type === 'text/plain'){
+    if (file.type === 'text/plain') {
       reader.readAsText(file);
-    }else{
+    } else {
       alert("formato file non ammesso")
     }
-      
+
   };
 
   startup();
