@@ -25,7 +25,6 @@ function queryService() {
         const solutions = solver.solve(query);
         const i = solutions.iterator();
         return{i, query};
-        
     }
 
     return {solve}

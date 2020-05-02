@@ -12,13 +12,14 @@
 
   function setListeners() {
     document
-      .querySelector("#inputFile")
+    .querySelector("#inputFile")
       .addEventListener("change", e =>
         readFile(e.target.files[0], text => (theoryField.innerText = text))
       );
 
     const solveQuery = document.querySelector("button.solve");
     solveQuery.addEventListener("click", () => {
+      
       const { i, query } = queryService.solve(theoryField.value, queryField.value)
       solutionResultModule(i, solutionsList, query)
     });
