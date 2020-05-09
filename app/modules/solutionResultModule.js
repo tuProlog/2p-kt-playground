@@ -1,25 +1,35 @@
-function SolutionResultModule(iterable, parentHtml, query) {
+function SolutionResultModule() {
 
-  function setListeners() {
-    const clearSolutionButton = document.querySelector("button.clearSolutions");
-    if (clearSolutionButton)
-      clearSolutionButton.addEventListener(
-        "click",
-        () => (parentHtml.innerHTML = "")
-      );
+  let parentHtml;
+
+  function init(parentNode){
+    const clearALL = document.createElement("button")
+    clearALL.classList.add("clearSolutions")
+    clearALL.innerText= "Clear All"
+    clearALL.addEventListener("click", () => solutionBox.innerHTML="")
+    const solutionBox = document.createElement("div")
+    solutionBox.classList.add("row", "output")
+    parentNode.appendChild(clearALL)
+    parentNode.appendChild(solutionBox)
+    parentHtml = solutionBox
   }
 
-  function prepareDom() {
-    const list = document.createElement("ul");
-    const solutionQuery = document.createElement("span");
+
+  function printSolution(iterator, query) {
+    const solutionContainer = document.createElement("div")
+    solutionContainer.className = "solutionResultWrapper"
+    const list = document.createElement("ul")
     const nextButton = document.createElement("button")
     nextButton.innerText = "Next"
-    nextButton.addEventListener('click', () => printNext(list))
+    nextButton.addEventListener('click', () => printNext(iterator, list, nextButton))
+    const deleteButton = document.createElement("button")
+    deleteButton.innerText = "X"
+    deleteButton.addEventListener('click', ()=>solutionContainer.remove())
+    const solutionQuery = document.createElement("span")
     solutionQuery.innerText = query
-    const solutionContainer = document.createElement("div");
-    solutionContainer.className = "solutionResultWrapper"
     solutionContainer.appendChild(solutionQuery)
     solutionContainer.appendChild(nextButton)
+    solutionContainer.appendChild(deleteButton)
     solutionContainer.appendChild(list)
     parentHtml.appendChild(solutionContainer)
     return list;
@@ -32,12 +42,14 @@ function SolutionResultModule(iterable, parentHtml, query) {
     solutionList.appendChild(element);
   }
 
-  function printNext(list) {
-    if (iterable.hasNext()) addDomSolution(iterable.next(), list);
+  function printNext(iterator,list, nextButton) {
+    if (iterator.hasNext())
+      addDomSolution(iterator.next(), list);
+    if (!iterator.hasNext())
+      nextButton.remove()
   }
 
-  setListeners();
-  printNext(prepareDom());
+  return{init, printSolution}
 }
 
-module.exports = SolutionResultModule
+module.exports = SolutionResultModule()

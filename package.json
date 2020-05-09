@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "watch" : {
+  "watch": {
     "build": "app/**/*.js",
-    "test" :{
-      "patterns" :  ["app/**", "test/**"],
-      "extensions" : "js"
+    "test": {
+      "patterns": [
+        "app/**",
+        "test/**"
+      ],
+      "extensions": "js"
     }
   },
   "scripts": {
-    "start" : "npm-watch",
+    "start": "npm-watch",
     "watch": "npm-watch",
     "build": "browserify app/control.js -o dist/bundle.js",
     "test": "mocha"
@@ -19,14 +22,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tuprolog/2p-core": "^0.7.2",
-    "@tuprolog/2p-parser-theory": "^0.7.2",
-    "@tuprolog/2p-solve-classic": "^0.7.2",
-    "@tuprolog/2p-theory": "^0.7.2"
+    "@tuprolog/2p-core": "^0.8.0-dev0w",
+    "@tuprolog/2p-parser-theory": "^0.8.0-dev0w",
+    "@tuprolog/2p-solve-classic": "^0.8.0-dev0w",
+    "@tuprolog/2p-theory": "^0.8.0-dev0w"
   },
   "devDependencies": {
     "browserify": "^16.5.1",
-    "mocha": "^7.1.1",
+    "mocha": "^7.1.2",
     "npm-watch": "^0.6.0",
     "tinyify": "^2.5.2"
   }

@@ -8,6 +8,7 @@
 
   function startup() {
     setListeners();
+    solutionResultModule.init(solutionsList)
   }
 
   function setListeners() {
@@ -21,7 +22,7 @@
     solveQuery.addEventListener("click", () => {
       
       const { i, query } = queryService.solve(theoryField.value, queryField.value)
-      solutionResultModule(i, solutionsList, query)
+      solutionResultModule.printSolution(i, query)
     });
   };
 
