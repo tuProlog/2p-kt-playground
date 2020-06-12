@@ -19,12 +19,19 @@ function queryService() {
             return;
         }
 
-        const query = common.tuprolog.core.parsing.parseStringAsStruct(queryText);
-        const theory = common.tuprolog.theory.parsing.parseAsClauseDatabase(theoryText);
-        const solver = solverOf(theory);
-        const solutions = solver.solve(query);
-        const i = solutions.iterator();
-        return{i, query};
+        try{
+            const query = common.tuprolog.core.parsing.parseStringAsStruct(queryText);
+            const theory = common.tuprolog.theory.parsing.parseAsTheory(theoryText);
+            const solver = solverOf(theory);
+            const solutions = solver.solve(query);
+            const i = solutions.iterator();
+            return{i, query};
+        }catch(err){
+            debugger;
+            return;
+        }
+        
+        
     }
 
     return {solve}

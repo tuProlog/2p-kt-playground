@@ -2,7 +2,7 @@ var assert = require('assert');
 
 var queryService = require('../app/service/queryService.js')
 
-let common = require('../app/common.js')
+var commonTest = require('./common/common.js');
 
 const baseTheoryText=`
     mother_child(trude, sally).
@@ -14,8 +14,6 @@ const baseTheoryText=`
     father_child(mike, jim).
     father_child(mike, marc).
     
-
-        
     sibling(X, Y)      :- parent_child(Z, X), parent_child(Z, Y), X \\= Y.
         
     parent_child(X, Y) :- father_child(X, Y).
@@ -23,6 +21,8 @@ const baseTheoryText=`
 
 
 describe('Solve', function() {
+
+  describe('Common', commonTest.bind(this))
 
   describe('Solution$Yes', function() {
     const inputQuery = `sibling(sally, Y)`
@@ -32,6 +32,7 @@ describe('Solve', function() {
       assert.equal(i.hasNext(), true);
     });
 
+    
     it('result should have 1 Yes result', function() {
       const {i} = queryService.solve(baseTheoryText, inputQuery)
       let index = 0;
@@ -52,11 +53,6 @@ describe('Solve', function() {
       }
         assert.equal(index, 2);
     });
-
-
-    /*it('query should be equal to submitted', function() {
-      assert.equal(query.toString(), inputQuery);
-    });*/
   });
 
   describe('Solution$No', function() {
