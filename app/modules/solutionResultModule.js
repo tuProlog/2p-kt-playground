@@ -1,15 +1,16 @@
 function SolutionResultModule() {
 
   let parentHtml;
+  let queryCounter=1;
 
   function init(parentNode){
-    const clearALL = document.createElement("button")
-    clearALL.classList.add("clearSolutions")
-    clearALL.innerText= "Clear All"
-    clearALL.addEventListener("click", () => solutionBox.innerHTML="")
+    //const clearALL = document.createElement("button")
+    //clearALL.classList.add("clearSolutions")
+    //clearALL.innerText= "Clear All"
+    //clearALL.addEventListener("click", () => solutionBox.innerHTML="")
     const solutionBox = document.createElement("div")
-    solutionBox.classList.add("row", "output")
-    parentNode.appendChild(clearALL)
+    solutionBox.classList.add("output")
+    //parentNode.prepend(clearALL)
     parentNode.appendChild(solutionBox)
     parentHtml = solutionBox
   }
@@ -26,12 +27,13 @@ function SolutionResultModule() {
     deleteButton.innerText = "X"
     deleteButton.addEventListener('click', ()=>solutionContainer.remove())
     const solutionQuery = document.createElement("span")
-    solutionQuery.innerText = query
+    solutionQuery.innerText = `${queryCounter} - ${query}`
     solutionContainer.appendChild(solutionQuery)
     solutionContainer.appendChild(nextButton)
     solutionContainer.appendChild(deleteButton)
     solutionContainer.appendChild(list)
     parentHtml.appendChild(solutionContainer)
+    queryCounter++;
     return list;
   }
 
@@ -46,7 +48,7 @@ function SolutionResultModule() {
     if (iterator.hasNext())
       addDomSolution(iterator.next(), list);
     if (!iterator.hasNext())
-      nextButton.remove()
+      nextButton.disabled = true;
   }
 
   return{init, printSolution}

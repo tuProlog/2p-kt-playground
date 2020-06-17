@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>tuProlog Playground</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>2P-Kt Playground</h1>
+
+    <div class="row">
+        <div class="column">
+            <label for="theory">Theory :</label>
+            <textarea id="theory" rows="20" cols="80">            mother_child(trude, sally).
+            
+            father_child(tom, sally).
+            father_child(tom, erica).
+            father_child(mike, tom).
+                
+            sibling(X, Y)      :- parent_child(Z, X), parent_child(Z, Y).
+                
+            parent_child(X, Y) :- father_child(X, Y).
+            parent_child(X, Y) :- mother_child(X, Y).
+            </textarea>
+            <label for="myfile">Select a file:</label>
+            <input type="file" id="inputFile" name="myfile">
+        </div>
+        <div class="column result">
+            <label for="query">Query : ?-</label>
+            <textarea type="text" id="query" name="query" rows="5">                sibling(sally,Y)
+            </textarea>
+            <button class="solve">RUN</button>
+
+            <p>Solutions</p>
+            <div id="solutions">
+                <div class="output"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="bundle.js"></script>
+
+
+</body>
+
+</html>

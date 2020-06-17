@@ -16,15 +16,22 @@ function queryService() {
     function solve(theoryText, queryText) {
         if (/^\s*$/.test(queryText)) {
             alert("Missing query!");
-            return;
+            return{i:null, query:null, error:"error"};
         }
 
-        const query = common.tuprolog.core.parsing.parseStringAsStruct(queryText);
-        const theory = common.tuprolog.theory.parsing.parseAsClauseDatabase(theoryText);
-        const solver = solverOf(theory);
-        const solutions = solver.solve(query);
-        const i = solutions.iterator();
-        return{i, query};
+        try{
+            const query = common.tuprolog.core.parsing.parseStringAsStruct(queryText);
+            const theory = common.tuprolog.theory.parsing.parseAsTheory(theoryText);
+            const solver = solverOf(theory);
+            const solutions = solver.solve(query);
+            const i = solutions.iterator();
+            return{i, query};
+        }catch(err){
+            alert(`ERRORE! \n ${err.name} \n ${err.message}`)
+            return{i:null, query:null, error:"error"};
+        }
+        
+        
     }
 
     return {solve}

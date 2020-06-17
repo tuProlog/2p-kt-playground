@@ -1,0 +1,93 @@
+*{
+  box-sizing: border-box;
+}
+
+.black{
+  color: white;
+  background-color: black;
+}
+
+body{
+  width: 90%;
+  margin: 0 auto;
+  font-family: Roboto;
+}
+
+.row{
+  display:flex;
+  justify-content: space-between;
+  height: 80vh;
+}
+
+.column {
+  flex: 0 1 49%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.column.result{
+  display: flex;
+  flex-direction: column;
+}
+
+#theory{
+  flex-grow: 1;
+}
+
+#query{
+  flex-shrink: 0;
+}
+
+#theory, #query {
+  width : 100%;
+  resize: none;
+  border-radius: 10px;
+  white-space: pre-wrap;
+}
+
+#inputFile{
+  margin-top: 10px;
+}
+
+button.solve{
+  margin-top: 10px;
+  height: 20px;
+}
+
+.solutionResultWrapper{
+  border: 1px solid #EEE;
+  border-radius: 5px;
+  padding: 5px;
+  flex: 1 0 33%;
+}
+
+
+
+.solutionResultWrapper button {
+  margin: 10px;
+}
+
+#solutions {
+  /*overflow-y: scroll;*/
+  border: 1px solid #555;
+  border-radius: 10px;
+  flex: 1 1 auto;
+}
+
+#solutions .solutionResultWrapper li.halt{
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+#solutions .solutionResultWrapper li.no{
+  background-color: rgba(255, 255, 0, 0.2);
+}
+
+#solutions li:nth-child(odd){
+  background-color: #EEE;
+}
+
+.output{
+  display: flex;
+  flex-direction: column-reverse;
+}

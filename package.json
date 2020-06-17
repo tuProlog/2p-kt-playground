@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "watch": {
-    "build": "app/**/*.js",
+    "build": "app/**/*.*",
     "test": {
       "patterns": [
         "app/**",
@@ -16,20 +16,23 @@
   "scripts": {
     "start": "npm-watch",
     "watch": "npm-watch",
-    "build": "browserify app/control.js -o dist/bundle.js",
+    "build": "browserify app/control.js -o dist/bundle.js && npm run copy",
+    "copy": "ncp app/index.html dist/index.html && ncp app/style.css dist/style.css",
     "test": "mocha"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tuprolog/2p-core": "^0.8.0-dev0w",
-    "@tuprolog/2p-parser-theory": "^0.8.0-dev0w",
-    "@tuprolog/2p-solve-classic": "^0.8.0-dev0w",
-    "@tuprolog/2p-theory": "^0.8.0-dev0w"
+    "@tuprolog/2p-core": "latest",
+    "@tuprolog/2p-parser-theory": "latest",
+    "@tuprolog/2p-solve-classic": "latest",
+    "@tuprolog/2p-theory": "latest"
   },
   "devDependencies": {
     "browserify": "^16.5.1",
-    "mocha": "^7.1.2",
+    "chai": "^4.2.0",
+    "mocha": "^7.2.0",
+    "ncp": "^2.0.0",
     "npm-watch": "^0.6.0",
     "tinyify": "^2.5.2"
   }

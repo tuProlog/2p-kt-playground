@@ -15,13 +15,15 @@
     document
     .querySelector("#inputFile")
       .addEventListener("change", e =>
-        readFile(e.target.files[0], text => (theoryField.innerText = text))
+        readFile(e.target.files[0], text => theoryField.value= text)
       );
 
     const solveQuery = document.querySelector("button.solve");
     solveQuery.addEventListener("click", () => {
       
-      const { i, query } = queryService.solve(theoryField.value, queryField.value)
+      const { i, query, error } = queryService.solve(theoryField.value, queryField.value)
+      if(error)
+        return;
       solutionResultModule.printSolution(i, query)
     });
   };
@@ -32,11 +34,11 @@
       return () => cb(reader.result);
     })(reader);
 
-    if (file.type === 'text/plain') {
+    //if (file.type === 'text/plain') {
       reader.readAsText(file);
-    } else {
+    /*} else {
       alert("formato file non ammesso")
-    }
+    }*/
 
   };
 
