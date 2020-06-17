@@ -1,6 +1,7 @@
 function SolutionResultModule() {
 
   let parentHtml;
+  let queryCounter=1;
 
   function init(parentNode){
     //const clearALL = document.createElement("button")
@@ -26,12 +27,13 @@ function SolutionResultModule() {
     deleteButton.innerText = "X"
     deleteButton.addEventListener('click', ()=>solutionContainer.remove())
     const solutionQuery = document.createElement("span")
-    solutionQuery.innerText = query
+    solutionQuery.innerText = `${queryCounter} - ${query}`
     solutionContainer.appendChild(solutionQuery)
     solutionContainer.appendChild(nextButton)
     solutionContainer.appendChild(deleteButton)
     solutionContainer.appendChild(list)
     parentHtml.appendChild(solutionContainer)
+    queryCounter++;
     return list;
   }
 

@@ -88,5 +88,6 @@ button.solve{
 }
 
 .output{
+  display: flex;
   flex-direction: column-reverse;
 }
