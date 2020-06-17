@@ -3,13 +3,13 @@ function SolutionResultModule() {
   let parentHtml;
 
   function init(parentNode){
-    const clearALL = document.createElement("button")
-    clearALL.classList.add("clearSolutions")
-    clearALL.innerText= "Clear All"
-    clearALL.addEventListener("click", () => solutionBox.innerHTML="")
+    //const clearALL = document.createElement("button")
+    //clearALL.classList.add("clearSolutions")
+    //clearALL.innerText= "Clear All"
+    //clearALL.addEventListener("click", () => solutionBox.innerHTML="")
     const solutionBox = document.createElement("div")
-    solutionBox.classList.add("row", "output")
-    parentNode.appendChild(clearALL)
+    solutionBox.classList.add("output")
+    //parentNode.prepend(clearALL)
     parentNode.appendChild(solutionBox)
     parentHtml = solutionBox
   }
@@ -46,7 +46,7 @@ function SolutionResultModule() {
     if (iterator.hasNext())
       addDomSolution(iterator.next(), list);
     if (!iterator.hasNext())
-      nextButton.remove()
+      nextButton.disabled = true;
   }
 
   return{init, printSolution}

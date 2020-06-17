@@ -16,7 +16,7 @@ function queryService() {
     function solve(theoryText, queryText) {
         if (/^\s*$/.test(queryText)) {
             alert("Missing query!");
-            return;
+            return{i:null, query:null, error:"error"};
         }
 
         try{
@@ -27,8 +27,8 @@ function queryService() {
             const i = solutions.iterator();
             return{i, query};
         }catch(err){
-            debugger;
-            return;
+            alert(`ERRORE! \n ${err.name} \n ${err.message}`)
+            return{i:null, query:null, error:"error"};
         }
         
         
