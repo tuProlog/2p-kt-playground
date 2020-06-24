@@ -1,7 +1,7 @@
 const path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	mode: 'development',
 	entry: {
 		"app": './app/control.js'
 	},
@@ -19,5 +19,11 @@ module.exports = {
 			use: ['file-loader']
 		}]
 	},
-	node: { module: "empty", net: "empty", fs: "empty" }
+	node: { module: "empty", net: "empty", fs: "empty" },
+	plugins: [
+		new HtmlWebpackPlugin({
+		  title: 'tuProlog Playground',
+		  template: 'assets/index.html'
+		})
+	  ]
 };

@@ -1,4 +1,6 @@
+import './style.css'
 (function () {
+
   const queryService = require('./service/queryService')
   const solutionResultModule = require('./modules/solutionResultModule')
 
