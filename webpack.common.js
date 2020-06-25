@@ -3,7 +3,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: {
-		"app": './app/control.js'
+		"app": './app/control.js',
+		"editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js',
 	},
 	output: {
 		globalObject: 'self',

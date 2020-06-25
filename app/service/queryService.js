@@ -1,4 +1,3 @@
-
 function queryService() {
 
     const common = require('../common.js')
