@@ -2,11 +2,6 @@
   box-sizing: border-box;
 }
 
-.black{
-  color: white;
-  background-color: black;
-}
-
 body{
   transition: ease-in-out opacity 2s;
   opacity: 1;
@@ -27,9 +22,11 @@ body{
   flex-direction: column;
 }
 
-.column.result{
-  display: flex;
-  flex-direction: column;
+#theory, #query {
+  width : 100%;
+  resize: none;
+  border-radius: 10px;
+  white-space: pre-wrap;
 }
 
 #theory{
@@ -39,13 +36,6 @@ body{
 #query{
   flex-shrink: 0;
   flex-basis: 20%
-}
-
-#theory, #query {
-  width : 100%;
-  resize: none;
-  border-radius: 10px;
-  white-space: pre-wrap;
 }
 
 #inputFile{
@@ -64,8 +54,6 @@ button.solve{
   flex: 1 0 33%;
 }
 
-
-
 .solutionResultWrapper button {
   margin: 10px;
 }
@@ -73,7 +61,6 @@ button.solve{
 #solutions {
   /*overflow-y: scroll;*/
   border: 1px solid #555;
-  border-radius: 10px;
   flex: 1 1 auto;
 }
 
@@ -93,4 +80,94 @@ button.solve{
   display: flex;
   flex-direction: column-reverse;
   font-size: 14px;
+}
+
+.topBar{
+  display: flex;
+  justify-content: space-between;
+}
+
+#colorMode{
+  display: flex;
+  align-items: center;
+}
+
+#colorMode .dark, #colorMode .light{
+  padding: 5px;
+}
+#colorMode .light{
+  display: none;
+}
+/*slider*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(120, 120, 120);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ddd;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ddd;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+/* DARK MODE changes*/
+
+body.dark{
+  background-color: black;
+  color: white;
+}
+
+.dark #solutions li:nth-child(odd){
+  background-color: #777;
+}
+
+body.dark #colorMode .light{
+  display: inline;
+}
+
+body.dark #colorMode .dark{
+  display: none;
 }

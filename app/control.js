@@ -56,6 +56,17 @@ function setListeners() {
       return;
     solutionResultModule.printSolution(i, query)
   });
+
+  const colorModeSwitch = document.querySelector("#colorMode .colorSwitch")
+  colorModeSwitch.addEventListener("change", (e) =>{
+    if (e.target.checked) {
+      document.body.classList.add('dark')
+      monaco.editor.setTheme('vs-dark')
+    } else {
+      document.body.classList.remove('dark')
+      monaco.editor.setTheme('vs')
+    } 
+  })
 };
 
 function readFile(file, cb) {
