@@ -8,7 +8,7 @@ cache:
 Test:
   stage: build
   script: 
-    - npm start
+    - npm install
     - npm test
 
 pages:
