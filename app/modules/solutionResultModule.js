@@ -1,5 +1,8 @@
 function SolutionResultModule() {
 
+  let {tuprolog} = require('../common');
+  let TermFormatter = tuprolog.core.TermFormatter.Companion;
+  const formatter = TermFormatter.prettyExpressionsPrettyVariablesDefaultOperators();
   let parentHtml;
   let queryCounter=1;
 
@@ -27,7 +30,7 @@ function SolutionResultModule() {
     deleteButton.innerText = "X"
     deleteButton.addEventListener('click', ()=>solutionContainer.remove())
     const solutionQuery = document.createElement("span")
-    solutionQuery.innerText = `${queryCounter} - ${query}`
+    solutionQuery.innerText = `${queryCounter} - ${formatter.format(query)}`
     solutionContainer.appendChild(solutionQuery)
     solutionContainer.appendChild(nextButton)
     solutionContainer.appendChild(deleteButton)
@@ -40,8 +43,32 @@ function SolutionResultModule() {
 
   function addDomSolution(sol, solutionList) {
     let element = document.createElement("li");
-    element.innerText = sol;
+    let text =  '';
+    if (sol.isYes) {
+      element = printPrettySolutions(sol)
+
+    }else if (sol.isNo){
+      element.innerText = "No"
+    }else {
+      element.innerText = "Halt : "+sol.exception.toString()
+    }
     solutionList.appendChild(element);
+  }
+
+  function printPrettySolutions(sol){
+    let element = document.createElement("li");
+    element.innerText = formatter.format(sol.solvedQuery)
+    if(!sol.substitution.isEmpty()){
+      let list = document.createElement('ul')
+      let solutions = sol.substitution.entries.toJSON().reduce((p,c)=>{
+        let li = document.createElement('li')
+        li.innerText = `${formatter.format(c.key)} : ${formatter.format(c.value)}`
+        p.appendChild(li)
+        return p
+      }, list)
+      element.appendChild(solutions)
+    }
+    return element
   }
 
   function printNext(iterator,list, nextButton) {
