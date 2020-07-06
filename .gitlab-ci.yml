@@ -6,7 +6,7 @@ cache:
     - prodDist/
 
 Test:
-  stage: test
+  stage: build
   script: 
     - npm start
     - npm test
