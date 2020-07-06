@@ -5,9 +5,7 @@ function queryService() {
     const ClassicSolverFactory = common.tuprolog.classic.ClassicSolverFactory;
 
     function solverOf(staticKb) {
-        return ClassicSolverFactory.solverWithDefaultBuiltins(
-            ClassicSolverFactory.defaultLibraries,
-            ClassicSolverFactory.defaultFlags,
+        return ClassicSolverFactory.solverWithDefaultBuiltinsAndStaticKB(
             staticKb
         );
     }
