@@ -1,0 +1,24 @@
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+    - prodDist/
+
+Test:
+  stage: test
+  script: 
+    - npm start
+    - npm test
+
+pages:
+  script:
+    - mkdir public
+    - npm run build
+    - cp -r prodDist/* public
+  artifacts:
+    paths:
+      - public
+  allow_failure: false
+  only:
+    - /^(master)|(release)$/
