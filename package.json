@@ -1,6 +1,6 @@
 {
-  "name": "tuprologplayground",
-  "version": "1.0.0",
+  "name": "@tuprolog/2p-playground",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,8 @@
     "build": "npm run test  && webpack --progress --config webpack.prod.js",
     "test": "mocha"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Giovanni Ciatto",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@tuprolog/2p-core": "latest",
     "@tuprolog/2p-parser-theory": "latest",
