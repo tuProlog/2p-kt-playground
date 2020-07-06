@@ -16,7 +16,7 @@
 ```
 ### npm start
 * start Webpack Dev server using unminified sourcers('js')
-### npn run build
+### npm run build
 * run test
 * build and create production ready artifacts in `prodDist` folder.
 ### npm test
