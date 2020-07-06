@@ -1,5 +1,7 @@
 function SolutionResultModule() {
 
+  let {tuprolog} = require('../common');
+  let TermFormatter = tuprolog.core.TermFormatter.Companion;
   let parentHtml;
   let queryCounter=1;
 
@@ -40,7 +42,17 @@ function SolutionResultModule() {
 
   function addDomSolution(sol, solutionList) {
     let element = document.createElement("li");
-    element.innerText = sol;
+    let text =  '';
+    if (sol.isYes) {
+      text = "Yes : "+TermFormatter.prettyExpressionsPrettyVariablesDefaultOperators().format(sol.solvedQuery)
+      
+    }else if (sol.isNo){
+       text = "No"
+    }else {
+      text = "Halt : "+sol.exception.toString()
+    }
+
+    element.innerText = text
     solutionList.appendChild(element);
   }
 

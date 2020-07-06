@@ -20,7 +20,7 @@ var theoryEditor = monaco.editor.create(theoryField, {
             'parent_child(X, Y) :- father_child(X, Y).',
             'parent_child(X, Y) :- mother_child(X, Y).'
 	].join('\n'),
-	language: 'python',
+	language: 'tuprolog',
 	minimap : {
 		enabled : false
 	}
@@ -29,7 +29,7 @@ var theoryEditor = monaco.editor.create(theoryField, {
 
 var queryEditor = monaco.editor.create(queryField, {
 	value: 'sibling(sally,Y)',
-	language: 'python',
+	language: 'tuprolog',
 	minimap : {
 		enabled : false
 	}
@@ -57,6 +57,7 @@ function setListeners() {
     solutionResultModule.printSolution(i, query)
   });
 
+  
   const colorModeSwitch = document.querySelector("#colorMode .colorSwitch")
   colorModeSwitch.addEventListener("change", (e) =>{
     if (e.target.checked) {
