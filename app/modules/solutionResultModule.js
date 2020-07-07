@@ -2,7 +2,7 @@ function SolutionResultModule() {
 
   let {tuprolog} = require('../common');
   let TermFormatter = tuprolog.core.TermFormatter.Companion;
-  const formatter = TermFormatter.prettyExpressionsPrettyVariablesDefaultOperators();
+  const formatter = () => TermFormatter.prettyExpressionsPrettyVariablesDefaultOperators();
   let parentHtml;
   let queryCounter=1;
 
@@ -30,7 +30,7 @@ function SolutionResultModule() {
     deleteButton.innerText = "X"
     deleteButton.addEventListener('click', ()=>solutionContainer.remove())
     const solutionQuery = document.createElement("span")
-    solutionQuery.innerText = `${queryCounter} - ${formatter.format(query)}`
+    solutionQuery.innerText = `${queryCounter} - ${formatter().format(query)}`
     solutionContainer.appendChild(solutionQuery)
     solutionContainer.appendChild(nextButton)
     solutionContainer.appendChild(deleteButton)
@@ -57,12 +57,12 @@ function SolutionResultModule() {
 
   function printPrettySolutions(sol){
     let element = document.createElement("li");
-    element.innerText = formatter.format(sol.solvedQuery)
+    element.innerText = formatter().format(sol.solvedQuery)
     if(!sol.substitution.isEmpty()){
       let list = document.createElement('ul')
       let solutions = sol.substitution.entries.toJSON().reduce((p,c)=>{
         let li = document.createElement('li')
-        li.innerText = `${formatter.format(c.key)} : ${formatter.format(c.value)}`
+        li.innerText = `${formatter().format(c.key)} : ${formatter().format(c.value)}`
         p.appendChild(li)
         return p
       }, list)
@@ -74,7 +74,7 @@ function SolutionResultModule() {
   function printNext(iterator,list, nextButton) {
     if (iterator.hasNext())
       addDomSolution(iterator.next(), list);
-    if (!iterator.hasNext())
+    else
       nextButton.disabled = true;
   }
 
