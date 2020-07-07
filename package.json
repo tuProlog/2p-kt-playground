@@ -8,7 +8,7 @@
     "build": "webpack --progress --config webpack.prod.js",
     "test": "mocha"
   },
-  "author": "Giovanni Ciatto - Federico Foresti",
+  "author": "Federico Foresti",
   "license": "Apache-2.0",
   "devDependencies": {
     "@tuprolog/2p-core": "latest",
