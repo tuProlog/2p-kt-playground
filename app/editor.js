@@ -1,4 +1,3 @@
-
 // (1) Desired editor features:
 import 'monaco-editor/esm/vs/editor/browser/controller/coreCommands.js';
 // import 'monaco-editor/esm/vs/editor/browser/widget/codeEditorWidget.js';
@@ -90,70 +89,70 @@ import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
 // import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
 // import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution';
 
-monaco.languages.register({id:'tuprolog'})
+monaco.languages.register({ id: 'tuprolog' })
 
 monaco.languages.setMonarchTokensProvider('tuprolog', {
-	 
-	symbols:  /[=><!~?:&|+\-*\/\^%]+/,
+
+	symbols: /[=><!~?:&|+\-*\/\^%]+/,
 
 	// C# style strings
 	escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
-  
-  
+
+
 	// The main tokenizer for our languages
 	tokenizer: {
-	  root: [
-		// identifiers and keywords
-		//[/([a-z][a-zA-Z_0-9]*)\s*\(/, { cases: {'@default': 'identifier' } }],
-		[/([a-z][a-zA-Z_0-9]*)\s*(?=\()/, 'type.identifier' ],  // to show class names nicely
-		
-		// whitespace
-		{ include: '@whitespace' },
-  
-		// delimiters and operators
-		[/[{}()\[\]]/, '@brackets'],
-		[/((?!\/\*)[+*\/^<>=~:.?@#$&\\-]+)|!|;|,|rem|mod|is/, 'type.operators' ],
-		// @ annotations.
-  
-  
-		// numbers
-		[/\d*\.\d+([eE][\-+]?\d+)?/, 'number.float'],
-		[/0[xX][0-9a-fA-F]+/, 'number.hex'],
-		[/0[oO][0-7]+/, 'number.oct'],
-		[/0[bB][0-1]+/, 'number.bin'],
-		[/\d+/, 'number'],
-  
-		// delimiter: after number because of .\d floats
-		[/[;,.]/, 'delimiter'],
-  
-		// strings
-		[/"([^"\\]|\\.)*$/, 'string.invalid' ],  // non-teminated string
-		[/"/,  { token: 'string.quote', bracket: '@open', next: '@string' } ],
-  
-		// characters
-		[/'[^\\']'/, 'string'],
-		[/(')(@escapes)(')/, ['string','string.escape','string']],
-		[/'/, 'string.invalid']
-	  ],
-  
-	  comment: [
-		[/[^\/*]+/, 'comment' ],
-		[/[\/*]/,   'comment' ]
-	  ],
-  
-	  string: [
-		[/[^\\"]+/,  'string'],
-		[/@escapes/, 'string.escape'],
-		[/\\./,      'string.escape.invalid'],
-		[/"/,        { token: 'string.quote', bracket: '@close', next: '@pop' } ]
-	  ],
-  
-	  whitespace: [
-		[/[ \t\r\n]+/, 'white'],
-		[/\/\*/,       'comment', '@comment' ],
-		[/\/\/.*$/,    'comment'],
-		[/%.*$/, 'comment']
-	  ]
+		root: [
+			// identifiers and keywords
+			//[/([a-z][a-zA-Z_0-9]*)\s*\(/, { cases: {'@default': 'identifier' } }],
+			[/([a-z][a-zA-Z_0-9]*)\s*(?=\()/, 'type.identifier'],  // to show class names nicely
+
+			// whitespace
+			{ include: '@whitespace' },
+
+			// delimiters and operators
+			[/[{}()\[\]]/, '@brackets'],
+			[/((?!\/\*)[+*\/^<>=~:.?@#$&\\-]+)|!|;|,|rem|mod|is/, 'type.operators'],
+			// @ annotations.
+
+
+			// numbers
+			[/\d*\.\d+([eE][\-+]?\d+)?/, 'number.float'],
+			[/0[xX][0-9a-fA-F]+/, 'number.hex'],
+			[/0[oO][0-7]+/, 'number.oct'],
+			[/0[bB][0-1]+/, 'number.bin'],
+			[/\d+/, 'number'],
+
+			// delimiter: after number because of .\d floats
+			[/[;,.]/, 'delimiter'],
+
+			// strings
+			[/"([^"\\]|\\.)*$/, 'string.invalid'],  // non-teminated string
+			[/"/, { token: 'string.quote', bracket: '@open', next: '@string' }],
+
+			// characters
+			[/'[^\\']'/, 'string'],
+			[/(')(@escapes)(')/, ['string', 'string.escape', 'string']],
+			[/'/, 'string.invalid']
+		],
+
+		comment: [
+			[/[^\/*]+/, 'comment'],
+			[/[\/*]/, 'comment']
+		],
+
+		string: [
+			[/[^\\"]+/, 'string'],
+			[/@escapes/, 'string.escape'],
+			[/\\./, 'string.escape.invalid'],
+			[/"/, { token: 'string.quote', bracket: '@close', next: '@pop' }]
+		],
+
+		whitespace: [
+			[/[ \t\r\n]+/, 'white'],
+			[/\/\*/, 'comment', '@comment'],
+			[/\/\/.*$/, 'comment'],
+			[/%.*$/, 'comment']
+		]
 	},
 })
 
@@ -176,4 +175,4 @@ self.MonacoEnvironment = {
 }
 
 
-export {monaco}
+export { monaco }

@@ -10,15 +10,15 @@ theory.parsing = require("@tuprolog/2p-parser-theory").it.unibo.tuprolog.theory.
 
 const tuprolog = {
     "core": core,
-   // "unify": unify,
+    // "unify": unify,
     "theory": theory,
     "solve": solve,
     "classic": classic
 };
 
 const common = {
-  //  kotlin,
-  //  ktmath
+    //  kotlin,
+    //  ktmath
 }
 
-module.exports = {tuprolog};
+module.exports = { tuprolog };
