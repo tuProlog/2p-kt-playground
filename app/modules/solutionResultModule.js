@@ -16,6 +16,7 @@ function SolutionResultModule() {
         //parentNode.prepend(clearALL)
         parentNode.appendChild(solutionBox)
         parentHtml = solutionBox
+        return { printSolution }
     }
 
 
@@ -78,7 +79,7 @@ function SolutionResultModule() {
             nextButton.disabled = true;
     }
 
-    return { init, printSolution }
+    return { init }
 }
 
 module.exports = SolutionResultModule()

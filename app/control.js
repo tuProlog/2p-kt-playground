@@ -9,7 +9,7 @@ const queryField = document.querySelector("#query");
 const solutionsList = document.querySelector("#solutions");
 
 
-var theoryEditor = monaco.editor.create(theoryField, {
+let theoryEditor = monaco.editor.create(theoryField, {
     value: [
         'father_child(tom, sally).',
         'father_child(tom, erica).',
@@ -27,7 +27,7 @@ var theoryEditor = monaco.editor.create(theoryField, {
 });
 
 
-var queryEditor = monaco.editor.create(queryField, {
+let queryEditor = monaco.editor.create(queryField, {
     value: 'sibling(sally,Y)',
     language: 'tuprolog',
     minimap: {
@@ -35,9 +35,11 @@ var queryEditor = monaco.editor.create(queryField, {
     }
 });
 
+let resultModule = null
+
 function startup() {
     setListeners();
-    solutionResultModule.init(solutionsList)
+    resultModule = solutionResultModule.init(solutionsList)
     showBody()
 }
 
@@ -54,7 +56,8 @@ function setListeners() {
         const { i, query, error } = queryService.solve(theoryEditor.getValue(), queryEditor.getValue())
         if (error)
             return;
-        solutionResultModule.printSolution(i, query)
+        if(resultModule)
+            resultModule.printSolution(i, query)
     });
 
 

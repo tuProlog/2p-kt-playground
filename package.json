@@ -1,8 +1,8 @@
 {
   "name": "@tuprolog/2p-playground",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "2Prolog web playground",
+  "main": "./app/control.js",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --progress --config webpack.prod.js",
