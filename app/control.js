@@ -35,42 +35,43 @@ let queryEditor = monaco.editor.create(queryField, {
     }
 });
 
-let resultModule = null
 
 function startup() {
-    setListeners();
-    resultModule = solutionResultModule.init(solutionsList)
-    showBody()
+    const resultModule = solutionResultModule.init(solutionsList);
+    setListeners(resultModule);
+    showBody();
 }
 
-function setListeners() {
-    document
-        .querySelector("#inputFile")
-        .addEventListener("change", e =>
-            readFile(e.target.files[0], text => theoryEditor.setValue(text))
-        );
+function setListeners(resultModule) {
 
-    const solveQuery = document.querySelector("button.solve");
-    solveQuery.addEventListener("click", () => {
+    document.querySelector("button.solve")
+    .addEventListener("click", () => {
+        try{
+            const { i, query } = queryService.solve(theoryEditor.getValue(), queryEditor.getValue());
+            resultModule.printSolution(i, query);
+        }
+        catch(error){
+            alert(`${error.name.toUpperCase()} \n${error.message}`);
+        }
 
-        const { i, query, error } = queryService.solve(theoryEditor.getValue(), queryEditor.getValue())
-        if (error)
-            return;
-        if(resultModule)
-            resultModule.printSolution(i, query)
     });
 
+    document
+    .querySelector("#inputFile")
+    .addEventListener("change", e =>
+        readFile(e.target.files[0], text => theoryEditor.setValue(text))
+    );
 
-    const colorModeSwitch = document.querySelector("#colorMode .colorSwitch")
-    colorModeSwitch.addEventListener("change", (e) => {
+    document.querySelector("#colorMode .colorSwitch")
+    .addEventListener("change", (e) => {
         if (e.target.checked) {
-            document.body.classList.add('dark')
-            monaco.editor.setTheme('vs-dark')
+            document.body.classList.add('dark');
+            monaco.editor.setTheme('vs-dark');
         } else {
-            document.body.classList.remove('dark')
-            monaco.editor.setTheme('vs')
+            document.body.classList.remove('dark');
+            monaco.editor.setTheme('vs');
         }
-    })
+    });
 };
 
 function readFile(file, cb) {
@@ -78,13 +79,11 @@ function readFile(file, cb) {
     reader.onload = (function (reader) {
         return () => cb(reader.result);
     })(reader);
-
     //if (file.type === 'text/plain') {
     reader.readAsText(file);
     /*} else {
       alert("formato file non ammesso")
     }*/
-
 };
 
 function showBody() {

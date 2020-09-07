@@ -95,16 +95,12 @@ monaco.languages.setMonarchTokensProvider('tuprolog', {
 
 	symbols: /[=><!~?:&|+\-*\/\^%]+/,
 
-	// C# style strings
 	escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
 
-
-	// The main tokenizer for our languages
 	tokenizer: {
 		root: [
-			// identifiers and keywords
-			//[/([a-z][a-zA-Z_0-9]*)\s*\(/, { cases: {'@default': 'identifier' } }],
-			[/([a-z][a-zA-Z_0-9]*)\s*(?=\()/, 'type.identifier'],  // to show class names nicely
+			// functors
+			[/([a-z][a-zA-Z_0-9]*)\s*(?=\()/, 'type.identifier'],
 
 			// whitespace
 			{ include: '@whitespace' },
@@ -112,8 +108,6 @@ monaco.languages.setMonarchTokensProvider('tuprolog', {
 			// delimiters and operators
 			[/[{}()\[\]]/, '@brackets'],
 			[/((?!\/\*)[+*\/^<>=~:.?@#$&\\-]+)|!|;|,|rem|mod|is/, 'type.operators'],
-			// @ annotations.
-
 
 			// numbers
 			[/\d*\.\d+([eE][\-+]?\d+)?/, 'number.float'],
@@ -122,7 +116,6 @@ monaco.languages.setMonarchTokensProvider('tuprolog', {
 			[/0[bB][0-1]+/, 'number.bin'],
 			[/\d+/, 'number'],
 
-			// delimiter: after number because of .\d floats
 			[/[;,.]/, 'delimiter'],
 
 			// strings
@@ -137,7 +130,9 @@ monaco.languages.setMonarchTokensProvider('tuprolog', {
 
 		comment: [
 			[/[^\/*]+/, 'comment'],
-			[/[\/*]/, 'comment']
+			[/[\/*]/, 'comment'],
+			[/\/\/.*$/, 'comment'],
+			[/%.*$/, 'comment']
 		],
 
 		string: [
@@ -149,9 +144,6 @@ monaco.languages.setMonarchTokensProvider('tuprolog', {
 
 		whitespace: [
 			[/[ \t\r\n]+/, 'white'],
-			[/\/\*/, 'comment', '@comment'],
-			[/\/\/.*$/, 'comment'],
-			[/%.*$/, 'comment']
 		]
 	},
 })

@@ -12,24 +12,40 @@ function queryService() {
 
     function solve(theoryText, queryText) {
         if (/^\s*$/.test(queryText)) {
-            alert("Missing query!");
-            return { i: null, query: null, error: "error" };
+            throw {
+                name : "Query error",
+                message: "Query is a mandatory field."
+            }
         }
 
-        try {
-            const query = common.tuprolog.core.parsing.parseStringAsStruct(queryText);
-            const theory = common.tuprolog.theory.parsing.parseAsTheory(theoryText);
+            const query = tryBlock(()=>common.tuprolog.core.parsing.parseStringAsStruct(queryText), "Query Error");
+            const theory = tryBlock(()=>common.tuprolog.theory.parsing.parseAsTheory(theoryText), "Theory Error");
             const solver = solverOf(theory);
-            const solutions = solver.solve(query);
+            const solutions = tryBlock(()=>solver.solve(query),"Solve Error");
             const i = solutions.iterator();
             return { i, query };
-        } catch (err) {
-            alert(`ERRORE! \n ${err.name} \n ${err.message}`)
-            return { i: null, query: null, error: "error" };
-        }
-
-
+    
     }
+
+    function tryBlock(fun, name){
+        try{
+            return fun();
+        }catch(err){
+            throw {
+                name,
+                message: formatErrorMessage(err)
+            }
+        }
+    }
+
+    function formatErrorMessage(err){
+        let message = '';
+        message += err.name?`${err.name}\n`:'';
+        message += err.message?`${err.message}\n`:'';
+        message += err.line?`at line ${err.line}`:'';
+        return message
+    }
+
 
     return { solve }
 }
