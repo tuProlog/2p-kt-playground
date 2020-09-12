@@ -2,13 +2,13 @@ var expect = require('chai').expect
 
 var common = require('../../app/common.js')
 
-module.exports = function suite() {
+describe('Common', function () {
 
-    it('should fail', function(done) {
+    it('parseAsTheory should fail', function(done) {
         function throwsWithNoArgs() {
             common.tuprolog.theory.parsing.parseAsTheory(' mother_child(trude, sally)')
         }
         expect(throwsWithNoArgs).to.throw
         done()
         });
-}
+})
