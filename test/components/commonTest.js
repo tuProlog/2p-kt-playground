@@ -11,4 +11,12 @@ describe('Common', function () {
         expect(throwsWithNoArgs).to.throw
         done()
         });
+
+    it('parseStringAsStruct should fail', function(done) {
+        function throwsWithNoArgs() {
+            common.tuprolog.theory.parsing.parseStringAsStruct('X<=X')
+        }
+        expect(throwsWithNoArgs).to.throw
+        done()
+        });
 })

@@ -1,2 +1,2 @@
-const commonTest = require('./components/common.js')
+const commonTest = require('./components/commonTest.js')
 const queryServiceTest = require('./components/queryServiceTest')

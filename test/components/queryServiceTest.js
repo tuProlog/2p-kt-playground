@@ -22,14 +22,24 @@ const baseTheoryText=`
 
 describe('queryService', function() {
 
-    it('should fail if no query', function(done) {
-      const inputQuery = ``
+    it('should fail if incorrect theory', function(done) {
+      const inputQuery = `sibling(sally, Y)`
+      const theory = `mother_child(trude, sally)`
       function throwsWithNoArgs() {
-        queryService.solve(baseTheoryText, inputQuery)
+        queryService.solve(theory, inputQuery)
       }
       expect(throwsWithNoArgs).to.throw
       done()
       });
+
+    it('should fail if no query', function(done) {
+        const inputQuery = ``
+        function throwsWithNoArgs() {
+          queryService.solve(baseTheoryText, inputQuery)
+        }
+        expect(throwsWithNoArgs).to.throw('Query is a mandatory field.')
+        done()
+        });
   
     describe('Solution$Yes', function() {
       const inputQuery = `sibling(sally, Y)`
