@@ -10,7 +10,7 @@ function queryService() {
         );
     }
 
-    function solve(theoryText, queryText) {
+    function solve(theoryText, queryText) {theory
         if (/^\s*$/.test(queryText)) {
             throw {
                 name: "Query error",
@@ -23,7 +23,7 @@ function queryService() {
         const solver = solverOf(theory);
         const solutions = tryBlock(() => solver.solve(query), "Solve Error");
         const i = solutions.iterator();
-        return {i, query};
+        return { i, query };
 
     }
 
@@ -47,7 +47,7 @@ function queryService() {
     }
 
 
-    return {solve}
+    return { solve }
 }
 
 module.exports = queryService()

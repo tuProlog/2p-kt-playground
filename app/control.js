@@ -4,6 +4,7 @@ import { monaco } from './editor';
 const queryService = require('./service/queryService')
 const solutionResultModule = require('./modules/solutionResultModule')
 
+const title = document.querySelector("#title");
 const theoryField = document.querySelector("#theory");
 const queryField = document.querySelector("#query");
 const solutionsList = document.querySelector("#solutions");
@@ -45,33 +46,33 @@ function startup() {
 function setListeners(resultModule) {
 
     document.querySelector("button.solve")
-    .addEventListener("click", () => {
-        try{
-            const { i, query } = queryService.solve(theoryEditor.getValue(), queryEditor.getValue());
-            resultModule.printSolution(i, query);
-        }
-        catch(error){
-            alert(`${error.name.toUpperCase()} \n${error.message}`);
-        }
+        .addEventListener("click", () => {
+            try {
+                const { i, query } = queryService.solve(theoryEditor.getValue(), queryEditor.getValue());
+                resultModule.printSolution(i, query);
+            }
+            catch (error) {
+                alert(`${error.name.toUpperCase()} \n${error.message}`);
+            }
 
-    });
+        });
 
     document
-    .querySelector("#inputFile")
-    .addEventListener("change", e =>
-        readFile(e.target.files[0], text => theoryEditor.setValue(text))
-    );
+        .querySelector("#inputFile")
+        .addEventListener("change", e =>
+            readFile(e.target.files[0], text => theoryEditor.setValue(text))
+        );
 
     document.querySelector("#colorMode .colorSwitch")
-    .addEventListener("change", (e) => {
-        if (e.target.checked) {
-            document.body.classList.add('dark');
-            monaco.editor.setTheme('vs-dark');
-        } else {
-            document.body.classList.remove('dark');
-            monaco.editor.setTheme('vs');
-        }
-    });
+        .addEventListener("change", (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('dark');
+                monaco.editor.setTheme('vs-dark');
+            } else {
+                document.body.classList.remove('dark');
+                monaco.editor.setTheme('vs');
+            }
+        });
 };
 
 function readFile(file, cb) {
