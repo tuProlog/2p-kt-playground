@@ -10,7 +10,7 @@ function queryService() {
         );
     }
 
-    function solve(theoryText, queryText) {theory
+    function solve(theoryText, queryText) {
         if (/^\s*$/.test(queryText)) {
             throw {
                 name: "Query error",

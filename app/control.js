@@ -1,6 +1,7 @@
 import '../assets/style.css'
 import { monaco } from './editor';
 
+const common = require("./common.js")
 const queryService = require('./service/queryService')
 const solutionResultModule = require('./modules/solutionResultModule')
 
@@ -27,7 +28,6 @@ let theoryEditor = monaco.editor.create(theoryField, {
     }
 });
 
-
 let queryEditor = monaco.editor.create(queryField, {
     value: 'sibling(sally,Y)',
     language: 'tuprolog',
@@ -36,8 +36,8 @@ let queryEditor = monaco.editor.create(queryField, {
     }
 });
 
-
 function startup() {
+    title.textContent = "2P-Kt v" + common.tuprolog.Info.VERSION + " Playground";
     const resultModule = solutionResultModule.init(solutionsList);
     setListeners(resultModule);
     showBody();
@@ -94,4 +94,3 @@ function showBody() {
 }
 
 startup();
-
