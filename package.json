@@ -11,10 +11,6 @@
   "author": "Federico Foresti",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@tuprolog/2p-core": "latest",
-    "@tuprolog/2p-parser-theory": "latest",
-    "@tuprolog/2p-solve-classic": "latest",
-    "@tuprolog/2p-theory": "latest",
     "chai": "^4.2.0",
     "css-loader": "^3.4.0",
     "file-loader": "^5.0.2",
@@ -27,5 +23,10 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@tuprolog/2p-core": "latest",
+    "@tuprolog/2p-parser-theory": "latest",
+    "@tuprolog/2p-solve-classic": "latest",
+    "@tuprolog/2p-theory": "latest"
+  }
 }

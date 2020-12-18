@@ -1,10 +1,5 @@
 image: node:latest
 
-cache:
-  paths:
-    - node_modules/
-    - prodDist/
-
 Test:
   stage: build
   script: 
